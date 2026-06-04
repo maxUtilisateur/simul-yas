@@ -11,6 +11,7 @@ import com.maxime.smul_yas.mapper.offres.OffresMapper;
 import com.maxime.smul_yas.repository.CrmRepository;
 import com.maxime.smul_yas.repository.OffresRepository;
 import com.maxime.smul_yas.repository.UserForfaitRepository;
+import com.maxime.smul_yas.utils.PhoneUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,16 +42,18 @@ public class OffresService {
     @Transactional
     public ActiveForfaitResponseDto acheterForfait(AcheterForfaitDto dto) {
         // Find Buyer
-        Crm buyer = crmRepository.findByPhone(dto.getBuyerPhone())
-                .orElseThrow(() -> new IllegalArgumentException("Acheteur non trouvé avec le numéro de téléphone: " + dto.getBuyerPhone()));
+        String buyerPhone = PhoneUtils.normalizePhone(dto.getBuyerPhone());
+        Crm buyer = crmRepository.findByPhone(buyerPhone)
+                .orElseThrow(() -> new IllegalArgumentException("Acheteur non trouvé avec le numéro de téléphone: " + buyerPhone));
 
         // Determine Beneficiary
-        final String finalBeneficiaryPhone = (dto.getBeneficiaryPhone() == null || dto.getBeneficiaryPhone().trim().isEmpty())
+        final String beneficiaryPhone = (dto.getBeneficiaryPhone() == null || dto.getBeneficiaryPhone().trim().isEmpty())
                 ? dto.getBuyerPhone()
                 : dto.getBeneficiaryPhone();
+        String normalizedBeneficiary = PhoneUtils.normalizePhone(beneficiaryPhone);
 
-        Crm beneficiary = crmRepository.findByPhone(finalBeneficiaryPhone)
-                .orElseThrow(() -> new IllegalArgumentException("Bénéficiaire non trouvé avec le numéro de téléphone: " + finalBeneficiaryPhone));
+        Crm beneficiary = crmRepository.findByPhone(normalizedBeneficiary)
+                .orElseThrow(() -> new IllegalArgumentException("Bénéficiaire non trouvé avec le numéro de téléphone: " + normalizedBeneficiary));
 
         // Find Offer
         Offres offre = offresRepository.findByForfaitsId(dto.getForfaitsId())
@@ -90,7 +93,7 @@ public class OffresService {
 
     @Transactional
     public List<ActiveForfaitResponseDto> consulterSoldeForfaits(String phone) {
-        final String sanitizedPhone = phone == null ? null : phone.trim().replace(" ", "+");
+        final String sanitizedPhone = PhoneUtils.normalizePhone(phone);
         // Verify user exists
         crmRepository.findByPhone(sanitizedPhone)
                 .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + sanitizedPhone));
