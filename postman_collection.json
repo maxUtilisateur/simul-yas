@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "8c5c7d81-8b43-448f-8d94-d2e82e379b39",
+		"name": "Telecom YAS Simulation API",
+		"description": "Collection pour tester les endpoints d'achat de crédit, transfert de crédit, consultation de solde et achat de forfaits.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CRM (Crédit)",
+			"item": [
+				{
+					"name": "Recharger Crédit (Pour Soi)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"amount\": 5000.00,\n    \"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/crm/recharger",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"crm",
+								"recharger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recharger Crédit (Pour Autrui)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"+22896699098\",\n    \"amount\": 2500.00,\n    \"password\": \"1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/crm/recharger",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"crm",
+								"recharger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transférer Crédit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"senderPhone\": \"+22896118586\",\n    \"receiverPhone\": \"+22896699098\",\n    \"amount\": 1500.00\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/crm/transferer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"crm",
+								"transferer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulter Solde Crédit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/crm/solde-credit?phone=%2B22896118586",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"crm",
+								"solde-credit"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": "+22896118586"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Offres (Forfaits)",
+			"item": [
+				{
+					"name": "Afficher les Forfaits Actifs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offres",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offres"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Afficher les Catégories de Forfaits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offres/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offres",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Acheter Forfait (Pour Soi)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"forfaitsId\": \"FOR-001\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/offres/acheter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offres",
+								"acheter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Acheter Forfait (Pour Autrui)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"+22896699098\",\n    \"forfaitsId\": \"FOR-001\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/offres/acheter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offres",
+								"acheter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulter Solde Forfaits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/offres/solde-forfaits?phone=%2B22896118586",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"offres",
+								"solde-forfaits"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": "+22896118586"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
