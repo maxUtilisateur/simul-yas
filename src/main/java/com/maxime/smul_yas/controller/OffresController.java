@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/offres")
 @RequiredArgsConstructor
-public class OffresController {
+public class  OffresController {
 
     private final OffresService offresService;
 
