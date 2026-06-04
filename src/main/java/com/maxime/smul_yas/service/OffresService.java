@@ -90,12 +90,13 @@ public class OffresService {
 
     @Transactional
     public List<ActiveForfaitResponseDto> consulterSoldeForfaits(String phone) {
+        final String sanitizedPhone = phone == null ? null : phone.trim().replace(" ", "+");
         // Verify user exists
-        crmRepository.findByPhone(phone)
-                .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + phone));
+        crmRepository.findByPhone(sanitizedPhone)
+                .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + sanitizedPhone));
 
         // Retrieve active forfaits
-        List<UserForfait> activeForfaits = userForfaitRepository.findByCrmPhoneAndActiveTrue(phone);
+        List<UserForfait> activeForfaits = userForfaitRepository.findByCrmPhoneAndActiveTrue(sanitizedPhone);
         LocalDateTime now = LocalDateTime.now();
         boolean changed = false;
 
@@ -108,7 +109,7 @@ public class OffresService {
         }
 
         if (changed) {
-            activeForfaits = userForfaitRepository.findByCrmPhoneAndActiveTrue(phone);
+            activeForfaits = userForfaitRepository.findByCrmPhoneAndActiveTrue(sanitizedPhone);
         }
 
         return offresMapper.toActiveForfaitResponseDtoList(activeForfaits);

@@ -86,8 +86,9 @@ public class CrmService {
 
     @Transactional(readOnly = true)
     public CreditBalanceResponseDto consulterSoldeCredit(String phone) {
-        Crm crm = crmRepository.findByPhone(phone)
-                .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + phone));
+        final String sanitizedPhone = phone == null ? null : phone.trim().replace(" ", "+");
+        Crm crm = crmRepository.findByPhone(sanitizedPhone)
+                .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + sanitizedPhone));
         return crmMapper.toCreditBalanceResponseDto(crm);
     }
 }
