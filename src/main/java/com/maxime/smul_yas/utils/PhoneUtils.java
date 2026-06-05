@@ -12,9 +12,14 @@ public class PhoneUtils {
         if (phone == null) {
             return null;
         }
-        if (phone.startsWith(" ")) {
-            phone = "+" + phone.substring(1);
+        String trimmed = phone.trim();
+        if (phone.startsWith(" ") || trimmed.startsWith("+")) {
+            String cleaned = trimmed.replace(" ", "");
+            if (!cleaned.startsWith("+")) {
+                cleaned = "+" + cleaned;
+            }
+            return cleaned;
         }
-        return phone.trim();
+        return trimmed.replace(" ", "");
     }
 }
