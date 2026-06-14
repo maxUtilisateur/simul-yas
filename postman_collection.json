@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "8c5c7d81-8b43-448f-8d94-d2e82e379b39",
-		"name": "Telecom YAS Simulation API",
-		"description": "Collection pour tester les endpoints d'achat de crédit, transfert de crédit, consultation de solde et achat de forfaits.",
+		"name": "Telecom YAS Simulation API (Render)",
+		"description": "Collection pour tester les endpoints d'achat de crédit, transfert de crédit, consultation de solde et achat de forfaits sur Render.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -21,15 +21,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"buyerPhone\": \"0600000000\",\n    \"beneficiaryPhone\": \"\",\n    \"amount\": 5000.00,\n    \"password\": \"1234\"\n}"
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"amount\": 5000.00,\n    \"password\": \"1234\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/crm/recharger",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/crm/recharger",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"crm",
@@ -51,15 +52,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"senderPhone\": \"0600000000\",\n    \"receiverPhone\": \"0611111111\",\n    \"amount\": 1500.00\n}"
+							"raw": "{\n    \"senderPhone\": \"+22896118586\",\n    \"receiverPhone\": \"+22896699098\",\n    \"amount\": 1500.00\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/crm/transferer",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/crm/transferer",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"crm",
@@ -75,12 +77,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/crm/solde-credit?phone=0600000000",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/crm/solde-credit?phone=+22896118586",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"crm",
@@ -89,7 +92,7 @@
 							"query": [
 								{
 									"key": "phone",
-									"value": "0600000000"
+									"value": "+22896118586"
 								}
 							]
 						}
@@ -102,12 +105,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/crm/solde-tmoney?phone=0600000000",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/crm/solde-tmoney?phone=+22896118586",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"crm",
@@ -116,7 +120,7 @@
 							"query": [
 								{
 									"key": "phone",
-									"value": "0600000000"
+									"value": "+22896118586"
 								}
 							]
 						}
@@ -134,12 +138,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/offres",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/offres",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"offres"
@@ -154,12 +159,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/offres/categories",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/offres/categories",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"offres",
@@ -181,15 +187,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"buyerPhone\": \"0600000000\",\n    \"beneficiaryPhone\": \"\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/offres/acheter",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/offres/acheter",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"offres",
@@ -211,15 +218,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"buyerPhone\": \"0600000000\",\n    \"beneficiaryPhone\": \"0611111111\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"+22896699098\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/offres/acheter",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/offres/acheter",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"offres",
@@ -235,12 +243,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/offres/solde-forfaits?phone=0600000000",
-							"protocol": "http",
+							"raw": "https://simul-yas-3.onrender.com/api/offres/solde-forfaits?phone=+22896118586",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"simul-yas-3",
+								"onrender",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"offres",
@@ -249,7 +258,7 @@
 							"query": [
 								{
 									"key": "phone",
-									"value": "0600000000"
+									"value": "+22896118586"
 								}
 							]
 						}

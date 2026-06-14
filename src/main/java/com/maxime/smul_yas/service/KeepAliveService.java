@@ -28,7 +28,7 @@ public class KeepAliveService {
 
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://simul-yas-2.onrender.com/api/offres/categories"))
+                    .uri(URI.create("https://simul-yas-3.onrender.com/api/offres/categories"))
                     .GET()
                     .timeout(Duration.ofSeconds(10))
                     .build();
