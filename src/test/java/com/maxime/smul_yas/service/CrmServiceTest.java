@@ -2,9 +2,13 @@ package com.maxime.smul_yas.service;
 
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
+import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
 import com.maxime.smul_yas.entity.Crm;
+import com.maxime.smul_yas.entity.TmoneyAccount;
 import com.maxime.smul_yas.mapper.crm.CrmMapper;
+import com.maxime.smul_yas.mapper.crm.TmoneyAccountMapper;
 import com.maxime.smul_yas.repository.CrmRepository;
+import com.maxime.smul_yas.repository.TmoneyAccountRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +32,12 @@ class CrmServiceTest {
 
     @Mock
     private TMoneyService tmoneyService;
+
+    @Mock
+    private TmoneyAccountRepository tmoneyAccountRepository;
+
+    @Mock
+    private TmoneyAccountMapper tmoneyAccountMapper;
 
     @InjectMocks
     private CrmService crmService;
@@ -185,5 +195,28 @@ class CrmServiceTest {
         assertTrue(exception.getMessage().contains("Bénéficiaire non trouvé"));
         verify(tmoneyService, never()).debitAccount(anyString(), any(BigDecimal.class), anyString());
         verify(crmRepository, never()).save(any(Crm.class));
+    }
+
+    @Test
+    void consulterSoldeTmoney_Success() {
+        // Arrange
+        String phone = "+22896118586";
+        TmoneyAccount account = new TmoneyAccount();
+        account.setPhone(phone);
+        account.setBalance(new BigDecimal("10000.00"));
+
+        TmoneyAccountResponseDto expectedResponse = new TmoneyAccountResponseDto(phone, new BigDecimal("10000.00"));
+
+        when(tmoneyAccountRepository.findByPhone(phone)).thenReturn(Optional.of(account));
+        when(tmoneyAccountMapper.toTmoneyAccountResponseDto(account)).thenReturn(expectedResponse);
+
+        // Act
+        TmoneyAccountResponseDto response = crmService.consulterSoldeTmoney(phone);
+
+        // Assert
+        assertNotNull(response);
+        assertEquals(new BigDecimal("10000.00"), response.getBalance());
+        assertEquals(phone, response.getPhone());
+        verify(tmoneyAccountRepository, times(1)).findByPhone(phone);
     }
 }

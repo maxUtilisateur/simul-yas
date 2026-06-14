@@ -3,9 +3,13 @@ package com.maxime.smul_yas.service;
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TransfererCreditDto;
+import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
 import com.maxime.smul_yas.entity.Crm;
+import com.maxime.smul_yas.entity.TmoneyAccount;
 import com.maxime.smul_yas.mapper.crm.CrmMapper;
+import com.maxime.smul_yas.mapper.crm.TmoneyAccountMapper;
 import com.maxime.smul_yas.repository.CrmRepository;
+import com.maxime.smul_yas.repository.TmoneyAccountRepository;
 import com.maxime.smul_yas.utils.PhoneUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,8 @@ public class CrmService {
     private final CrmRepository crmRepository;
     private final CrmMapper crmMapper;
     private final TMoneyService tmoneyService;
+    private final TmoneyAccountRepository tmoneyAccountRepository;
+    private final TmoneyAccountMapper tmoneyAccountMapper;
 
     @Transactional
     public CreditBalanceResponseDto rechargerCredit(RechargeCreditDto dto) {
@@ -97,5 +103,13 @@ public class CrmService {
         Crm crm = crmRepository.findByPhone(sanitizedPhone)
                 .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + sanitizedPhone));
         return crmMapper.toCreditBalanceResponseDto(crm);
+    }
+
+    @Transactional(readOnly = true)
+    public TmoneyAccountResponseDto consulterSoldeTmoney(String phone) {
+        final String sanitizedPhone = PhoneUtils.normalizePhone(phone);
+        TmoneyAccount account = tmoneyAccountRepository.findByPhone(sanitizedPhone)
+                .orElseThrow(() -> new IllegalArgumentException("Compte financier T-Money non trouvé pour le numéro de téléphone: " + sanitizedPhone));
+        return tmoneyAccountMapper.toTmoneyAccountResponseDto(account);
     }
 }

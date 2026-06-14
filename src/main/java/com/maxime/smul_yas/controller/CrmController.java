@@ -3,6 +3,7 @@ package com.maxime.smul_yas.controller;
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TransfererCreditDto;
+import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
 import com.maxime.smul_yas.service.CrmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +29,10 @@ public class CrmController {
     @GetMapping("/solde-credit")
     public ResponseEntity<CreditBalanceResponseDto> consulterSoldeCredit(@RequestParam String phone) {
         return ResponseEntity.ok(crmService.consulterSoldeCredit(phone));
+    }
+
+    @GetMapping("/solde-tmoney")
+    public ResponseEntity<TmoneyAccountResponseDto> consulterSoldeTmoney(@RequestParam String phone) {
+        return ResponseEntity.ok(crmService.consulterSoldeTmoney(phone));
     }
 }
