@@ -19,10 +19,18 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final CrmRepository crmRepository;
     private final TmoneyAccountRepository tmoneyAccountRepository;
 
+    @org.springframework.beans.factory.annotation.Value("${spring.datasource.url}")
+    private String dbUrl;
+
+    @org.springframework.beans.factory.annotation.Value("${spring.datasource.username}")
+    private String dbUser;
+
     @Override
     public void run(String... args) {
         log.info("==================================================");
         log.info("DatabaseSeeder: Démarrage de la mise à jour des données...");
+        log.info("Database URL : {}", dbUrl);
+        log.info("Database User: {}", dbUser);
         log.info("==================================================");
 
         String phone = "+22896118586";
