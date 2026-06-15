@@ -187,7 +187,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"\",\n    \"forfaitsId\": \"FOR-001\"\n}"
 						},
 						"url": {
 							"raw": "https://simul-yas-3.onrender.com/api/offres/acheter",
@@ -218,7 +218,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"+22896699098\",\n    \"forfaitsId\": \"FORFAIT-001\"\n}"
+							"raw": "{\n    \"buyerPhone\": \"+22896118586\",\n    \"beneficiaryPhone\": \"+22896699098\",\n    \"forfaitsId\": \"FOR-001\"\n}"
 						},
 						"url": {
 							"raw": "https://simul-yas-3.onrender.com/api/offres/acheter",
