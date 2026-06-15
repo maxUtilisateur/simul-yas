@@ -3,6 +3,7 @@ package com.maxime.smul_yas.service;
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
+import com.maxime.smul_yas.dto.crm_dto.CrmResponseDto;
 import com.maxime.smul_yas.entity.Crm;
 import com.maxime.smul_yas.entity.TmoneyAccount;
 import com.maxime.smul_yas.mapper.crm.CrmMapper;
@@ -218,5 +219,44 @@ class CrmServiceTest {
         assertEquals(new BigDecimal("10000.00"), response.getBalance());
         assertEquals(phone, response.getPhone());
         verify(tmoneyAccountRepository, times(1)).findByPhone(phone);
+    }
+
+    @Test
+    void rechercherClientParTelephone_Success() {
+        // Arrange
+        String phone = "+22896118586";
+        Crm crm = new Crm();
+        crm.setId(1L);
+        crm.setUser_id("USR-001");
+        crm.setFirstName("Maxime");
+        crm.setLastName("Togo");
+        crm.setEmail("maxime.togo@example.com");
+        crm.setCity("Lomé");
+        crm.setPhone(phone);
+        crm.setCreditBalance(new BigDecimal("1000.00"));
+
+        CrmResponseDto expectedResponse = CrmResponseDto.builder()
+                .id(1L)
+                .user_id("USR-001")
+                .firstName("Maxime")
+                .lastName("Togo")
+                .email("maxime.togo@example.com")
+                .city("Lomé")
+                .phone(phone)
+                .creditBalance(new BigDecimal("1000.00"))
+                .build();
+
+        when(crmRepository.findByPhone(phone)).thenReturn(Optional.of(crm));
+        when(crmMapper.toCrmResponseDto(crm)).thenReturn(expectedResponse);
+
+        // Act
+        CrmResponseDto response = crmService.rechercherClientParTelephone(phone);
+
+        // Assert
+        assertNotNull(response);
+        assertEquals("Maxime", response.getFirstName());
+        assertEquals("Togo", response.getLastName());
+        assertEquals(phone, response.getPhone());
+        verify(crmRepository, times(1)).findByPhone(phone);
     }
 }

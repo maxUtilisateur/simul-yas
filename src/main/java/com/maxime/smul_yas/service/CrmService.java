@@ -1,6 +1,7 @@
 package com.maxime.smul_yas.service;
 
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
+import com.maxime.smul_yas.dto.crm_dto.CrmResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TransfererCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
@@ -111,5 +112,13 @@ public class CrmService {
         TmoneyAccount account = tmoneyAccountRepository.findByPhone(sanitizedPhone)
                 .orElseThrow(() -> new IllegalArgumentException("Compte financier T-Money non trouvé pour le numéro de téléphone: " + sanitizedPhone));
         return tmoneyAccountMapper.toTmoneyAccountResponseDto(account);
+    }
+
+    @Transactional(readOnly = true)
+    public CrmResponseDto rechercherClientParTelephone(String phone) {
+        final String sanitizedPhone = PhoneUtils.normalizePhone(phone);
+        Crm crm = crmRepository.findByPhone(sanitizedPhone)
+                .orElseThrow(() -> new IllegalArgumentException("Client non trouvé avec le numéro de téléphone: " + sanitizedPhone));
+        return crmMapper.toCrmResponseDto(crm);
     }
 }

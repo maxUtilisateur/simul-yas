@@ -1,6 +1,7 @@
 package com.maxime.smul_yas.controller;
 
 import com.maxime.smul_yas.dto.crm_dto.CreditBalanceResponseDto;
+import com.maxime.smul_yas.dto.crm_dto.CrmResponseDto;
 import com.maxime.smul_yas.dto.crm_dto.RechargeCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TransfererCreditDto;
 import com.maxime.smul_yas.dto.crm_dto.TmoneyAccountResponseDto;
@@ -34,5 +35,10 @@ public class CrmController {
     @GetMapping("/solde-tmoney")
     public ResponseEntity<TmoneyAccountResponseDto> consulterSoldeTmoney(@RequestParam String phone) {
         return ResponseEntity.ok(crmService.consulterSoldeTmoney(phone));
+    }
+
+    @GetMapping("/rechercher")
+    public ResponseEntity<CrmResponseDto> rechercherClientParTelephone(@RequestParam String phone) {
+        return ResponseEntity.ok(crmService.rechercherClientParTelephone(phone));
     }
 }

@@ -126,6 +126,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Rechercher Client par Téléphone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://simul-yas-3.onrender.com/api/crm/rechercher?phone=+22896118586",
+							"protocol": "https",
+							"host": [
+								"simul-yas-3",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"crm",
+								"rechercher"
+							],
+							"query": [
+								{
+									"key": "phone",
+									"value": "+22896118586"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
