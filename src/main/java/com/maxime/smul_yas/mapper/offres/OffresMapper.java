@@ -12,12 +12,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface OffresMapper {
 
-    @Mapping(source = "forfaits_id", target = "forfaitsId")
+    //@Mapping(source = "forfaits_id", target = "forfaitsId")
     OffreResponseDto toOffreResponseDto(Offres offres);
 
     List<OffreResponseDto> toOffreResponseDtoList(List<Offres> offresList);
 
-    @Mapping(source = "offres.forfaits_id", target = "forfaitId")
+    //@Mapping(source = "offres.forfaits_id", target = "forfaitId")
     @Mapping(source = "offres.appelation", target = "appelation")
     @Mapping(source = "offres.categories", target = "category")
     @Mapping(source = "offres.type", target = "type")
