@@ -230,7 +230,6 @@ class CrmServiceTest {
         crm.setUser_id("USR-001");
         crm.setFirstName("Maxime");
         crm.setLastName("Togo");
-        crm.setEmail("maxime.togo@example.com");
         crm.setCity("Lomé");
         crm.setPhone(phone);
         crm.setCreditBalance(new BigDecimal("1000.00"));
@@ -240,7 +239,6 @@ class CrmServiceTest {
                 .user_id("USR-001")
                 .firstName("Maxime")
                 .lastName("Togo")
-                .email("maxime.togo@example.com")
                 .city("Lomé")
                 .phone(phone)
                 .creditBalance(new BigDecimal("1000.00"))
