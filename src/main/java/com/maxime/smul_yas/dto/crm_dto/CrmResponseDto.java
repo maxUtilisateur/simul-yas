@@ -13,7 +13,6 @@ public class CrmResponseDto {
     private String user_id;
     private String firstName;
     private String lastName;
-    private String email;
     private String city;
     private String phone;
     private BigDecimal creditBalance;
