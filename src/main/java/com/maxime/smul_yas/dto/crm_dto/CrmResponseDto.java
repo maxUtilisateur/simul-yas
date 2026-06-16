@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class CrmResponseDto {
-    private long id;
     private String user_id;
     private String firstName;
     private String lastName;
