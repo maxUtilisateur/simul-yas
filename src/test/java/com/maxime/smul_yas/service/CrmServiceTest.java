@@ -226,7 +226,7 @@ class CrmServiceTest {
         // Arrange
         String phone = "+22896118586";
         Crm crm = new Crm();
-        //crm.setId(1L);
+        crm.setId(1L);
         crm.setUser_id("USR-001");
         crm.setFirstName("Maxime");
         crm.setLastName("Togo");
@@ -235,7 +235,7 @@ class CrmServiceTest {
         crm.setCreditBalance(new BigDecimal("1000.00"));
 
         CrmResponseDto expectedResponse = CrmResponseDto.builder()
-                //.id(1L)
+                .id(1L)
                 .user_id("USR-001")
                 .firstName("Maxime")
                 .lastName("Togo")

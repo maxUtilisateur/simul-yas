@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class OffreResponseDto {
-    //private String forfaitsId;
+    private String forfaitsId;
     private CategoriesType categories;
     private OffresType type;
     private String appelation;

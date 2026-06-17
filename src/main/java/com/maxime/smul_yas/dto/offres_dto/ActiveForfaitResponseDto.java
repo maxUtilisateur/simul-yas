@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class ActiveForfaitResponseDto {
-    //private String forfaitId;
+    private String forfaitId;
     private String appelation;
     private CategoriesType category;
     private OffresType type;
